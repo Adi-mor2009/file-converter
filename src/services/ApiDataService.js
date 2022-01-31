@@ -51,6 +51,40 @@ async function postData(file, onUploadProgress) {
     }
 }
 
+async function deleteAllData() {
+    debugger
+    const getURL = SERVER_URL + "files";
+    console.log(getURL);
+    try {
+        const res = await axios.delete(getURL, {
+            headers: {
+                "Content-type": "application/json"
+            }});
+        debugger
+        return({response: res, error: null});
+    } catch (err) {
+        console.error('Error while deleting files', err);
+        return({response: null, error: err});
+    }
+}
+
+async function deleteFile(fileName) {
+    debugger
+    const getURL = SERVER_URL + "files" + "/" + fileName;
+    console.log(getURL);
+    try {
+        const res = await axios.delete(getURL, {
+            headers: {
+                "Content-type": "application/json"
+            }});
+        debugger
+        return({response: res, error: null});
+    } catch (err) {
+        console.error('Error while deleting file ' + fileName, err);
+        return({response: null, error: err});
+    }
+}
+
 // async function putData(type, id, data) {
 //     const putURL = SERVER_URL + type + "/" + id;
 //     try {
@@ -74,4 +108,4 @@ async function postData(file, onUploadProgress) {
 //     }
 // }
 
-export default { getFiles, postData }
+export default { getFiles, postData, deleteAllData, deleteFile }

@@ -1,0 +1,19 @@
+.btn-link {
+    text-decoration: none !important
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    flex-flow: row wrap !important; 
+}
+
+.list-group-item {
+    display: inline-flex !important
+}
+
+.actions-file {
+    position: relative;
+    margin-left: auto;;
+}
