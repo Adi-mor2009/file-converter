@@ -42,6 +42,26 @@ function UploadFiles() {
         setLoading(true);
         const fileToRemove = await ApiDataService.deleteFile(fileName);
         setLoading(false);
+        if (fileToRemove.error) {
+            setShowRemoveError(true);
+        }
+        else {
+            setMessage(fileToRemove.response.data.message);
+            setLoading(true);
+            const files = await ApiDataService.getFiles();
+            setLoading(false);
+            if (files.error) {
+                setShowUploadError(true);
+                setProgress(0);
+                setMessage("Could not get list of files!");
+                //setCurrentFile(undefined);
+                //setSelectedFiles(undefined);
+            }
+            else {
+                setFileInfos(files.response.data);
+            }
+            setCurrentFile(undefined);
+        }
     }
 
     async function deleteAllFiles() {
